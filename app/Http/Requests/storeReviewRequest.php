@@ -22,8 +22,8 @@ class storeReviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'rate' => ['integer' , 'min:1' , 'max:5' , 'nullable'],
-            'comment' => ['string' , 'max:10' , 'nullable' ]
+            'rate' => ['min:1' , 'max:5' , 'nullable'],
+            'comment' => ['string' , 'max:400', 'nullable' ]
         ];
     }
 }

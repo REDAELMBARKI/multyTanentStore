@@ -57,23 +57,23 @@ function ProductReview({commentts , product_id}) {
 
   const handleSubmitReview = (e) => {
     e.preventDefault();
-
     (async () =>{
-          const res = await post(`/products/${product_id}/review` , data)
-          // if(res.ok){
-          //     console.log('message has been sent ')
-          // }else{
-          //     console.war('message has not  been sent ')
-            
-          // }
-        })()
+          post(`/products/${product_id}/review` , {
+           preserveScroll: true,
+           data
+          })
+          
+    })()
 
+ 
+    // empty the fields
+    setRating(0)
+    
+    setData({
+      rate: null ,
+      comment : ''
+    });
 
-    // if (rating > 0 && comment.trim()) {
-    //   console.log('Review submitted:', { rating, comment });
-    //   setRating(0);
-    //   setComment('');
-    // }
   };
 
   const handleReplySubmit = (commentId, e) => {
