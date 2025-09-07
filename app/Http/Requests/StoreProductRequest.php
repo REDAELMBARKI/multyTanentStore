@@ -216,7 +216,7 @@ class StoreProductRequest extends FormRequest{
 
     private function product_tags(){
         return [
-            'tags' => ['bail', 'required', 'array'],
+            'tags' => ['bail', 'array'],
            
             'tags.*' => ['array'],
             'tags.*.id' => ['nullable' , Rule::exists((new Tag)->getTable() , 'id')],

@@ -146,6 +146,7 @@ class ProductController extends Controller
     
         
     }
+    
     public function storeTags($product_input_data , $product){
         $tags = $product_input_data->get('tags');
         
@@ -258,7 +259,7 @@ class ProductController extends Controller
 
     public function show($id){
 
-        $product = Product::with(['colors' , 'materials' , 'fits' , 'sizes' , 'inventories.covers'])->findOrFail($id);
+        $product = Product::with(['colors' , 'materials' , 'fits' , 'sizes' , 'inventories.covers' , 'categories'])->findOrFail($id);
         $product['covers'] = $product->covers();
    
 

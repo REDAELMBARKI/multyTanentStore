@@ -17,9 +17,21 @@ class ReviewController extends Controller
         $authenticatedUserId = auth()->id ?? '1' ;
         $product->reviews()->create([
                'user_id' => $authenticatedUserId,
-               'comment' => $validated->only('comment'),
-               'rate' => $validated->only('rate')
+               'comment' => $validated['comment'],
+               'rate' => $validated['rate']
         ]);
+
+
+        // update the product rating average 
+        // increase the acount of ratings (rating count column )
+        $product->reviews()->count();
+        $product->rating_average =  round($product->reviews()->sum('rate') / $product->reviews()->count() , 1) ;
+
+
+        $product->save();
+
+
+     
         
     }
 }

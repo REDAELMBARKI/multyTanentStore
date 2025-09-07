@@ -18,10 +18,9 @@ return new class extends Migration
            
             $table->string('thumbnail')->nullable()->default('/storage/products/thumbnails/default-thumbnail.png');
             $table->boolean('is_featured')->default(true);
-            $table->integer('rating_count')->unsigned()->default(1)->nullable(true);
             $table->float('rating_average')->unsigned()->default(1.0)->nullable(true);
             $table->boolean('free_shipping')->nullable(true)->default(true);
-            $table->float('price')->unsigned();
+            $table->float('price' , 15 , 2)->unsigned();
             $table->text('description');
             $table->timestamps();
         });

@@ -15,11 +15,10 @@ class CategoryFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
-    {
+    {  
+        $cats = ['wommen' , 'men' , 'kids'] ;
         return [
-            "name"=> $this->faker->name,
-            "slug"=> $this->faker->slug,        
-            
+               'name' => $this->faker->randomElement($cats)
         ];
     }
 }

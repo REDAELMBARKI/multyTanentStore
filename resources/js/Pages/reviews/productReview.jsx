@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Star, MessageCircle, ThumbsUp, MoreHorizontal, Send, Reply } from 'lucide-react';
 import { useForm } from "@inertiajs/react";
 
@@ -75,7 +75,9 @@ function ProductReview({commentts , product_id}) {
     });
 
   };
-
+  useEffect(()=>{
+    console.log(data.comment)
+  },[data.comment])
   const handleReplySubmit = (commentId, e) => {
     e.preventDefault();x
     if (replyText.trim()) {
@@ -148,13 +150,13 @@ function ProductReview({commentts , product_id}) {
                 placeholder="Share your experience with this product..."
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-all duration-200"
                 rows={4}
-                required
+             
               />
             </div>
 
             <button
               type="submit"
-              disabled={data.rate === 0 && !data.comment.trim()}
+              disabled={data.rate === 0 && data.comment.trim() === ''}
               className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-medium py-3 px-6 rounded-xl hover:from-blue-700 hover:to-blue-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center gap-2"
             >
               <Send className="w-4 h-4" />

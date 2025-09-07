@@ -23,7 +23,7 @@ class storeReviewRequest extends FormRequest
     {
         return [
             'rate' => ['min:1' , 'max:5' , 'nullable'],
-            'comment' => ['string' , 'max:400', 'nullable' ]
+            'comment' => ['string' , 'max:400', 'nullable']
         ];
     }
 }
