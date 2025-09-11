@@ -146,7 +146,7 @@ class ProductController extends Controller
     
         
     }
-    
+
     public function storeTags($product_input_data , $product){
         $tags = $product_input_data->get('tags');
         
@@ -239,9 +239,12 @@ class ProductController extends Controller
 
     }
 
+    private function storeCategories($categories , $product){
+          
+    }
 
-
-    public function edit(){
+    public function edit($id){
+        
         return inertia::render('products/edit');
     }
 
