@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import { Pencil, Upload, Star, X } from 'lucide-react';
 import type { ProductType } from '../../../types/types.js';
 
+type editinfoTypeProps = {
+    product :ProductType
+    ,
+     openModal: () => void;
+}
 
-const EditProductinfo = ({product}:ProductType) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // Placeholder data
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
+const EditProductinfo = ({product , openModal }:editinfoTypeProps) => {
+ 
   return (
          <>
            <div className="max-w-4xl mx-auto px-6">
@@ -110,7 +109,7 @@ const EditProductinfo = ({product}:ProductType) => {
                             </label>
                             <div className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900">
                                 <div className="flex flex-wrap gap-2">
-                                {product.tags.split(', ').map((tag, index) => (
+                                {product.tags.map((tag, index) => (
                                     <span
                                     key={index}
                                     className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium"

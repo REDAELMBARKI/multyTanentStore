@@ -1,7 +1,12 @@
 import React from 'react'
 import type { VariantType } from '../../../types/types.js';
 
-function VariantsRetraived({variants}:VariantType[]) {
+type VariantsRetraivedProps = {
+  variants: VariantType[];
+};
+
+function VariantsRetraived({variants}:VariantsRetraivedProps ) {
+    
   return (
      <>
      
@@ -35,15 +40,15 @@ function VariantsRetraived({variants}:VariantType[]) {
                     </div>
                     <div>
                       <span className="text-xs font-medium text-gray-500 uppercase tracking-wide block mb-1">Material</span>
-                      <p className="text-sm text-gray-700">{variant.material}</p>
+                      <p className="text-sm text-gray-700">{variant?.materials[0]?.name}</p>
                     </div>
                     <div>
                       <span className="text-xs font-medium text-gray-500 uppercase tracking-wide block mb-1">Fit</span>
-                      <p className="text-sm text-gray-700">{variant.fit}</p>
+                      <p className="text-sm text-gray-700">{variant?.fits[0]?.name}</p>
                     </div>
                     <div>
                       <span className="text-xs font-medium text-gray-500 uppercase tracking-wide block mb-1">Size</span>
-                      <p className="text-sm text-gray-700">{variant.size}</p>
+                      <p className="text-sm text-gray-700">{variant?.sizes[0]?.name}</p>
                     </div>
                   </div>
                 </div>

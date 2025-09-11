@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Star, Heart, Facebook, Twitter, Plus, Minus, ChevronRight } from 'lucide-react';
-import Layout from '../Layouts/Layout';
+import Layout from '../Layouts/Layout.js';
 
 const ProductDetailPage = () => {
   const [selectedSize, setSelectedSize] = useState('');
@@ -66,7 +66,7 @@ const ProductDetailPage = () => {
   ];
 
   return (
-    <Layout>
+    <Layout currentPage="product deatails| Ecma">
       {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <nav className="flex items-center space-x-2 text-sm">

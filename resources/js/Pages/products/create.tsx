@@ -9,7 +9,10 @@ import BasicInformationsSection from "@/components/addProductPartials/BasicInfor
 import axios from "axios";
 import isEqual from "lodash/isEqual";
 import { forEach } from "lodash";
-function Create({ tagSuggestions, inventoryOptions }) {
+
+import type { coloroption, CurrentVariantType, imagetype, SubmitCheckType, VariantType } from "../../types/types.js";
+
+function Create({ tagSuggestions, inventoryOptions } :any) {
     const { data, setData, post, errors } = useForm({
         name: "",
         brand: "",
@@ -23,43 +26,41 @@ function Create({ tagSuggestions, inventoryOptions }) {
     });
 
     // checkeers for data submit
-    const [imagesValid, setImagesValid] = useState(false);
-    const [tagsValid, setTagsValid] = useState(false);
-    const [inventoryValid, setInventoryValid] = useState(false);
-    const [otherStringFieldsValid, setOtherStringFieldsValid] = useState(true);
-    const [newSelectedColors, setNewSelectedColors] = useState([]);
-    const [updateVariantMode, setUpdateVariantMode] = useState(false);
-    const [isFlashing, setIsFlashing] = useState(false);
-    const [placeHolderNotFilled, setPlaceHolderNotFilled] = useState(false);
-    const [isReadyToSubmit, setIsReadyToSubmit] = useState({
+    const [imagesValid, setImagesValid] = useState<boolean>(false);
+    const [tagsValid, setTagsValid] = useState<boolean>(false);
+    const [inventoryValid, setInventoryValid] = useState<boolean>(false);
+    const [otherStringFieldsValid, setOtherStringFieldsValid] = useState<boolean>(true);
+    const [newSelectedColors, setNewSelectedColors] = useState<coloroption[]>([]);
+    const [updateVariantMode, setUpdateVariantMode] = useState<boolean>(false);
+    const [isFlashing, setIsFlashing] = useState<boolean>(false);
+    const [placeHolderNotFilled, setPlaceHolderNotFilled] = useState<boolean>(false);
+    const [isReadyToSubmit, setIsReadyToSubmit] = useState<SubmitCheckType>({
         bool: false,
         name: false,
         brand: false,
         description: false,
         price: false,
         tags: false,
-        // thumbnail is optional
-        // thumbnail: false,
         inventory: false,
     });
 
     const [isSetCover , setIsSetCover] =  useState(false);
     const [tagInputValue, setTagInputValue] = useState("");
     // tags elements
-    const [selectedTags, setSelectedTags] = useState([]);
-    const [suggestedTags, setSuggestedTags] = useState([]);
-    const [images, setImages] = useState({});
+    const [selectedTags, setSelectedTags] = useState<string[]>([]);
+    const [suggestedTags, setSuggestedTags] = useState<string[]>([]);
+    const [images, setImages] = useState<imagetype[] >();
     const [imagesPlaceHolders, setImagesPlaceHolders] = useState([]);
-    const [isVariantCoverPreview, setIsVariantCoverPreview] = useState(false);
+    const [isVariantCoverPreview, setIsVariantCoverPreview] = useState<boolean>(false);
     const variantFormRef = useRef(null);
-    const [isCurrentVariantActive, setIsCurrentVariantActive] = useState(false);
-    const [fileToPass, setFileToPass] = useState(null);
-    const [isAllcoversDeleted, setIsAllcoversDeleted] = useState(false);
+    const [isCurrentVariantActive, setIsCurrentVariantActive] = useState<boolean>(false);
+    const [fileToPass, setFileToPass] = useState<any | null>(null);
+    const [isAllcoversDeleted, setIsAllcoversDeleted] = useState<boolean>(false);
     // inventory ====================================================================
 
     const [productVariants, setProductVariants] = useState([]);
     // variants
-    const [currentVariant, setCurrentVariant] = useState({
+    const [currentVariant, setCurrentVariant] = useState<CurrentVariantType>({
         id: null,
         colors: [],
         sizes: [],
@@ -99,12 +100,12 @@ function Create({ tagSuggestions, inventoryOptions }) {
         }
     }, [tagInputValue, selectedTags]);
 
-    function handleTagRemove(tagToRemove) {
+    function handleTagRemove(tagToRemove:number) {
         const tags = selectedTags.filter((_, index) => index !== tagToRemove);
         setSelectedTags(tags);
     }
 
-    function addSuggestedTagToSelectedOnes(tag) {
+    function addSuggestedTagToSelectedOnes(tag:string) {
         setSelectedTags([...selectedTags, tag]);
         setTagInputValue("");
     }
@@ -118,8 +119,8 @@ function Create({ tagSuggestions, inventoryOptions }) {
 
         const reader = new FileReader();
 
-        reader.onload = (e) => {
-            const base64 = e.target.result;
+        reader.onload = (e:ProgressEvent<FileReader>) => {
+            const base64 = e?.target?.result;
 
             setImages((prevImages) => ({
                 ...prevImages,

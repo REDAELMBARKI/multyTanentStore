@@ -19,13 +19,22 @@ import {
   Filter,
   ChevronUp
 } from 'lucide-react';
+import { Link } from '@inertiajs/react';
 
-const Layout = ({ children, currentPage = 'home' }) => {
+type layoutType = {
+    currentPage : string , 
+    children: React.ReactNode
+}
+type navigation = {
+   name: string, href: string , active?:boolean , label?: string
+}
+
+const Layout = ({ children, currentPage = 'home' } : layoutType) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-
-  const navigation = [
+   
+  const navigation:navigation[] = [
     { name: 'Home', href: '/', active: currentPage === 'home'},
     { name: 'Shop', href: '/shop', active: currentPage === 'shop' },
     { name: 'Features', href: '/features', active: currentPage === 'cart', label: 'hot' },
@@ -93,21 +102,7 @@ const Layout = ({ children, currentPage = 'home' }) => {
                         </span>
                       )}
                     </Link>
-                    {item.submenu && (
-                      <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                        <div className="py-1">
-                          {item.submenu.map((subitem) => (
-                            <a
-                              key={subitem}
-                              href="#"
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                            >
-                              {subitem}
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+                    
                   </div>
                 ))}
               </nav>
@@ -182,21 +177,8 @@ const Layout = ({ children, currentPage = 'home' }) => {
                           </span>
                         )}
                       </span>
-                      {item.submenu && <ChevronRight className="w-4 h-4" />}
                     </a>
-                    {item.submenu && (
-                      <div className="ml-4 mt-2 space-y-2">
-                        {item.submenu.map((subitem) => (
-                          <a
-                            key={subitem}
-                            href="#"
-                            className="block py-1 text-sm text-gray-600 hover:text-gray-900"
-                          >
-                            {subitem}
-                          </a>
-                        ))}
-                      </div>
-                    )}
+                   
                   </div>
                 ))}
               </nav>
